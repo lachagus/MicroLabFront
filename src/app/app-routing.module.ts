@@ -15,8 +15,8 @@ const routes: Routes = [
   component: CardsComponent
   },
 
-  //Componente que quiero que me muestre
-  {path: 'details',
+  //Componente que quiero que me muestre por id porque acepta parámetros que pueden ir variando
+  {path: 'details/:id',
   component: DetailsComponent
   },
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiciosService } from 'src/app/services/servicios.service';
 
 @Component({
   selector: 'app-cards',
@@ -7,11 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
 
-  servicios: number [] = [1,2,3,4,5,6];
+  servicios: any[] = [];
 
-  constructor() { }
+  // Tenemos accesos a todos los puntos y varianles que hayan en el servicio
+  constructor(private serviciosSVC: ServiciosService) {
+    this.servicios = this.serviciosSVC.servicios;
+   }
 
   ngOnInit(): void {
   }
 
+  navigate(){
+    console.log('click');
+  }
+
+  recibir($event: DatosHijos) {
+    console.log('recibido', $event);
+  }
+
+}
+
+interface DatosHijos {
+  message: string;
+  component: string;
 }

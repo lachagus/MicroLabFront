@@ -1,6 +1,10 @@
 <!-- Llamada de cada elemento CARD del section a través de GRILLAS-->
 <article class="servicios-container">
-    <section *ngFor="let servicio of servicios" class="servicios-item">
-        <app-card></app-card>
+    <section *ngFor="let servicio of servicios; let i = index" class="servicios-item">
+       <app-card (enviarDatos)="recibir($event)" [servicio]="servicio" [index]="i"></app-card> 
+        
+  <!-- Acá  estaba todo el bloque de las CARDS que fue pasado a CARD, ya que CARDS es e padre y se comunica con el hijo CARD a traves
+  de app-card -->
+
     </section>
 </article>
