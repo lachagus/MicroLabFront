@@ -12,9 +12,9 @@ export class CardComponent implements OnInit {
   @Input() servicio:any = {}
 
   //Desde afuera lo mandan como index pero adentro lo usa como i 
-  @Input('index') i:number = 0
+  @Input('index') i:number = 0;
 
-  @Output('enviarDatos') enviar = new EventEmitter();
+  @Output('enviarDatos') clickCard = new EventEmitter();
 
   constructor() { }
 
@@ -26,7 +26,7 @@ export class CardComponent implements OnInit {
 
   avisarleAlPapa(){
     console.log('click hijo');
-    this.enviar.emit({
+    this.clickCard.emit({
       message: 'Mensajito a papá',
       Component: 'CardComponent',
     });

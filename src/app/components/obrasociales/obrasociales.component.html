@@ -1,0 +1,12 @@
+<article class="services-container">
+    <section *ngFor="let osocial of osociales"
+    class="osociales-osocial">
+    <div class="card" style="width: 100%;">
+          <div class="card-body">
+            <h6 class="card-title">{{osocial.nombre | uppercase}}</h6>
+            <p class="card-text">{{osocial.digitales}}</p> 
+          </div>
+        </div>
+    </section>
+    <button [routerLink]="['/']" (click)="navigate()" class="btn btn-primary">Anterior</button>
+</article> 

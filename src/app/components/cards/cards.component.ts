@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiciosService } from 'src/app/services/servicios.service';
+import { ServiciosService, servicio } from 'src/app/services/servicios.service';
 
 @Component({
   selector: 'app-cards',
@@ -8,11 +8,15 @@ import { ServiciosService } from 'src/app/services/servicios.service';
 })
 export class CardsComponent implements OnInit {
 
-  servicios: any[] = [];
+  servicios: servicio[] = [];
 
-  // Tenemos accesos a todos los puntos y varianles que hayan en el servicio
-  constructor(private serviciosSVC: ServiciosService) {
-    this.servicios = this.serviciosSVC.servicios;
+  // Tenemos acceso a todos los puntos y varianles que hayan en el servicio
+  constructor(private serviciosSvc: ServiciosService) {
+    //this.servicios = this.serviciosSvc.servicios;
+    this.serviciosSvc.getServicios().subscribe((servicios) => {
+      console.log(servicios);
+      this.servicios = servicios;
+      });
    }
 
   ngOnInit(): void {
@@ -22,9 +26,9 @@ export class CardsComponent implements OnInit {
     console.log('click');
   }
 
-  recibir($event: DatosHijos) {
-    console.log('recibido', $event);
-  }
+  // recibir($event: DatosHijos) {
+  //   console.log('recibido', $event);
+  // }
 
 }
 

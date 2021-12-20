@@ -1,61 +1,96 @@
 // Movemos el arreglo de cards acá
 
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Analisis, Obrasocial } from '../models/api-models';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiciosService {
-  servicios: any [] = [
+  
+  initialServicios: servicio[] = [
     {
-      id: 1,
-      nombre: "Indicaciones",
-      imagen: 'assets/Indicaciones.svg',
+      codigo: 1,
+      nombre: "Analisis",
+      imagen: 'assets/img/Indicaciones.svg',
       descripcion:'Aquí podrá consultar como debe prepararse para concurrir al laboratorio, según los análisis solicitados por su Médico.',
-      },
+    },
       
-      {
-      id:2,
-      nombre:"Obras Sociales",
-      imagen: 'assets/ObraSocial.svg',
+    {
+      codigo: 2,
+      nombre: "Obras Sociales",
+      imagen: 'assets/img/ObraSocial.svg',
       descripcion: 'Listado de las obras sociales que atendemos. Si no encuentra su cobertura médica utilice el formulario de contacto para consultarnos.',
-      },
-      
-      {
-      id:3,
+    },
+    
+    {
+      codigo: 3,
       nombre: "Autorizaciones",
-      imagen: 'assets/Autorizaciones.svg',
+      imagen: 'assets/img/Autorizaciones.svg',
       descripcion: 'Ingrese a esta sección para iniciar el trámite de autorización de sus ordenes de análisis y agilizar su atención el día de la extracción.',
-      },
-      
-      {
-      id:4,
+    },
+    
+    {
+      codigo: 4,
       nombre: "Domicilios",
-      imagen: 'assets/Domicilio.svg',
+      imagen: 'assets/img/Domicilio.svg',
       descripcion: 'Complete el formulario para solicitar la toma de las muestras en su domicilio.',
-      },
-      
-      {
-      id:5,
-      nombre:"Presupuestos",
-      imagen:'assets/Presupuesto.svg',
-      descripcion:
-      'Completando el formulario a continuación podrá solicitar un presupuesto para sus análisis.',
-      },
-      
-      {
-      id:6,
-      nombre:"Formulario de Contacto",
-      imagen:'assets/FormularioContacto.svg',
+    },
+    
+    {
+      codigo: 5,
+      nombre: "Presupuestos",
+      imagen: 'assets/img/Presupuesto.svg',
+      descripcion: 'Completando el formulario a continuación podrá solicitar un presupuesto para sus análisis.',
+    },
+    
+    {
+      codigo: 6,
+      nombre: "Formulario de Contacto",
+      imagen: 'assets/img/FormularioContacto.svg',
       descripcion: 'Complete el formulario para solicitar información adicional.',
-      },
-    ];
+    },
 
-  constructor() { }
+  ];
 
-  // Devuelve uno de los servicios de todos los servicios que ofrece el lab (cards)
-  getServicio(id: number){
-  // Se le pone el ID porque se corresponde el lugar del array con el ID del this.servicios, sino this.servicios.id === id
-    return this.servicios[id];
+  constructor(private http: HttpClient) {}  
+
+  servicios$: BehaviorSubject<servicio[]> = new BehaviorSubject(this.initialServicios);
+
+  getServicios(): Observable<servicio[]> {
+    return this.servicios$.asObservable();
   }
+  
+  getAnalisis() {
+    return this.http.get<Analisis>(`${environment.baseUrl}analisis`);
+  }
+
+  getObraSocial() {
+    return this.http.get<Obrasocial>(`${environment.baseUrl}obrasocial`);
+  }
+
+  filteredServicios(text: string) {
+    console.log (text);
+      const filteredServicios = this.servicios$.value.filter((servicio) => 
+        servicio.nombre.toLowerCase().includes(text.toLowerCase())
+    );    
+      this.servicios$.next(filteredServicios);
+    }
+
+  resetServicios(){
+      this.servicios$.next(this.initialServicios);
+    }
 }
+
+    export interface servicio {
+      codigo: number
+      nombre: string
+      imagen: string
+      descripcion: string
+    }
+

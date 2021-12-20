@@ -8,6 +8,11 @@ import { CardComponent } from './components/card/card.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SearchComponent } from './components/search/search.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ObrasocialesComponent } from './components/obrasociales/obrasociales.component'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +21,16 @@ import { SearchComponent } from './components/search/search.component';
     CardComponent,
     CardsComponent,
     DetailsComponent,
-    SearchComponent
+    SearchComponent,
+    FooterComponent,
+    HeaderComponent,
+    ObrasocialesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

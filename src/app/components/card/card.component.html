@@ -12,24 +12,22 @@
     <!-- Esto viene del padre CARDS, se pasa acá -->
 
   <div class="card" style="width: 100%;">
-    <img src="https://durviz.com/wp-content/uploads/2018/04/almacenamiento-equipos-laboratorio.jpg" 
-         class="card-img-top"
-         alt="prueba">
+      <img
+        [src]="servicio.imagen"
+      />
     <div class="card-body">
-      <h5 class="card-title">{{servicio.nombre | uppercase}}</h5>
-      <p class="card-text">
-        {{servicio.descripcion}}
-      </p>
+      <h5 class="card-title">{{ servicio.nombre | uppercase }}</h5>
+      <p class="card-text">{{ servicio.descripcion }}</p>
       
       <!-- Este botón recibe parámetros variables porque routerLink está con [] -->
       <button 
         [routerLink]="['/details', i]" 
-         class="btn btn-primary">Detalle
+         class="btn btn-primary">Detalles
       </button>
-
-      <button 
+      
+      <!-- <button 
         (click)="avisarleAlPapa()"
-        class="btn btn-primary">Avisarle al apa
-      </button>
+        class="btn btn-primary">Avisarle al Papá
+      </button> -->
     </div>
   </div>

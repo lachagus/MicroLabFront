@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CardsComponent } from './components/cards/cards.component';
 import { DetailsComponent } from './components/details/details.component';
+import { ObrasocialesComponent } from './components/obrasociales/obrasociales.component';
 
 
 const routes: Routes = [
@@ -16,8 +17,17 @@ const routes: Routes = [
   },
 
   //Componente que quiero que me muestre por id porque acepta parámetros que pueden ir variando
-  {path: 'details/:id',
-  component: DetailsComponent
+  {
+    path: 'details',
+    children:[
+      {path:'0',
+      component: DetailsComponent,
+      },
+
+      {path:'1',
+      component: ObrasocialesComponent,
+      }, 
+    ]
   },
 
   {path: '**',
@@ -28,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
