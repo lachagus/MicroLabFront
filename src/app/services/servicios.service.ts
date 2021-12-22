@@ -3,10 +3,11 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, pipe } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Analisis, Obrasocial } from '../models/api-models';
-
+import { ObrasocialesComponent } from '../components/obrasociales/obrasociales.component';
+import { Analisis, Datum, Obrasocial } from '../models/api-models';
+import { Analisis2, Datum2, Obrasocial2 } from '../models/api2-models';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +73,15 @@ export class ServiciosService {
 
   getObraSocial() {
     return this.http.get<Obrasocial>(`${environment.baseUrl}obrasocial`);
+  }
+//Agrega una Obra Social - obraSocial es del tipo Datum porque así está definido en models
+  addObrasocial(Obrasocial2: Datum2): Observable<Datum2> {
+    return this.http.post<Obrasocial2>(`${environment.baseUrl}obrasocial`, Obrasocial2).pipe(
+      map( (res) => res.data)
+    )  }
+
+  updObrasocial(obraSocial: Datum) {
+    return this.http.put<Obrasocial>(`${environment.baseUrl}obrasocial/${obraSocial._id}`, obraSocial);
   }
 
   filteredServicios(text: string) {

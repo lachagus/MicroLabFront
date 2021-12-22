@@ -13,6 +13,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ObrasocialesComponent } from './components/obrasociales/obrasociales.component'
 import { FormsModule } from '@angular/forms';
+import { AltaComponent } from './components/alta/alta.component';
+import { ModificarComponent } from './components/modificar/modificar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FormsModule } from '@angular/forms';
     SearchComponent,
     FooterComponent,
     HeaderComponent,
-    ObrasocialesComponent
+    ObrasocialesComponent,
+    AltaComponent,
+    ModificarComponent
   ],
   imports: [
     BrowserModule,
