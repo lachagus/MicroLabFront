@@ -15,6 +15,9 @@ import { ObrasocialesComponent } from './components/obrasociales/obrasociales.co
 import { FormsModule } from '@angular/forms';
 import { AltaComponent } from './components/alta/alta.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
+import { AutorizacionesComponent } from './components/autorizaciones/autorizaciones.component';
+import { PresupuestosComponent } from './components/presupuestos/presupuestos.component';
+import { InstitucionalComponent } from './components/institucional/institucional.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { ModificarComponent } from './components/modificar/modificar.component';
     HeaderComponent,
     ObrasocialesComponent,
     AltaComponent,
-    ModificarComponent
+    ModificarComponent,
+    AutorizacionesComponent,
+    PresupuestosComponent,
+    InstitucionalComponent
   ],
   imports: [
     BrowserModule,

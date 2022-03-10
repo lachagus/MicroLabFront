@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AltaComponent } from './components/alta/alta.component';
+import { AutorizacionesComponent } from './components/autorizaciones/autorizaciones.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { DetailsComponent } from './components/details/details.component';
+import { InstitucionalComponent } from './components/institucional/institucional.component';
 import { ObrasocialesComponent } from './components/obrasociales/obrasociales.component';
+import { PresupuestosComponent } from './components/presupuestos/presupuestos.component';
 
 
 const routes: Routes = [
@@ -16,12 +19,17 @@ const routes: Routes = [
   {path: 'home',
   component: CardsComponent
   },
-  //Componente Alta
+  //Componente Alta desde NAVBAR
   {path: 'alta',
   component: AltaComponent
   },
 
-  //Componente que quiero que me muestre por id porque acepta parámetros que pueden ir variando
+   //Componente Institucional desde 
+   {path: 'institucional',
+   component: InstitucionalComponent
+   },
+
+    //Cada CARD del home que quiero que me muestre por id, porque acepta parámetros que pueden ir variando
   {
     path: 'details',
     children:[
@@ -32,6 +40,14 @@ const routes: Routes = [
       {path:'1',
       component: ObrasocialesComponent,
       }, 
+
+      {path:'2',
+      component: AutorizacionesComponent
+      },
+
+      {path:'4',
+      component: PresupuestosComponent
+      },
     ]
   },
 
